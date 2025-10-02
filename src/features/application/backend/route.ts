@@ -100,6 +100,7 @@ export const registerApplicationRoutes = (app: Hono<AppEnv>) => {
 
   app.get('/applications/my', async (c) => {
     const config = getConfig(c);
+    const logger = getLogger(c);
     const serviceSupabase = getSupabase(c);
     const authSupabase = createBrowserClient(
       {
