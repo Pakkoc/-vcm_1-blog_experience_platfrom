@@ -7,6 +7,7 @@ export type AppConfig = {
   supabase: {
     url: string;
     serviceRoleKey: string;
+    anonKey: string;
   };
 };
 

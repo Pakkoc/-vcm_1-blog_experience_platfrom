@@ -31,11 +31,15 @@ export const createSupabaseServerClient = async (): Promise<
           return cookieStore.getAll();
         },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => {
-            if (typeof cookieStore.set === "function") {
-              cookieStore.set({ name, value, ...options });
-            }
-          });
+          try {
+            cookiesToSet.forEach(({ name, value, options }) => {
+              if (typeof cookieStore.set === "function") {
+                cookieStore.set({ name, value, ...options });
+              }
+            });
+          } catch (error) {
+            // Next.js 15에서는 레이아웃에서 쿠키를 수정할 수 없으므로 무시
+          }
         },
       },
     }
