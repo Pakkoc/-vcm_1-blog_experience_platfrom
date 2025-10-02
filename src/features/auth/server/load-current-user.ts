@@ -7,6 +7,7 @@ import type { CurrentUserSnapshot } from "../types";
 const mapUser = (user: User) => ({
   id: user.id,
   email: user.email,
+  role: (user.user_metadata?.role as string | null) ?? null,
   appMetadata: user.app_metadata ?? {},
   userMetadata: user.user_metadata ?? {},
 });
